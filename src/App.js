@@ -16,14 +16,7 @@ class App extends React.Component {
        * The XYChart for transit schema
        */
 
-      // Create chart instance
-      const chart = am4core.create('chartdiv', am4charts.XYChart);
-      chart.padding(10, 10, 10, 10);
-
-      chart.dataSource.url =
-        'https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-160/sample_data_serial.csv';
-      chart.dataSource.parser = new am4core.CSVParser();
-      chart.dataSource.parser.options.useColumnNames = true;
+ 
 
       function createAxis(list) {
         const axis = list.push(new am4charts.ValueAxis());
