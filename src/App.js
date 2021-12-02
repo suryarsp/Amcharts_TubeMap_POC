@@ -94,7 +94,7 @@ class App extends React.Component {
         // Set up appearance
         series.stroke = color;
         // series.strokeDasharray = "9,9";
-        series.strokeWidth = 10;
+        series.strokeWidth = 4;
         series.connect = true;
 
         // ENable Events
