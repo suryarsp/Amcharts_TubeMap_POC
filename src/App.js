@@ -16,7 +16,9 @@ class App extends React.Component {
        * The XYChart for transit schema
        */
 
- 
+      // Create chart instance
+      const chart = am4core.create('chartdiv', am4charts.XYChart);
+      chart.padding(10, 10, 10, 10);
 
       function createAxis(list) {
         const axis = list.push(new am4charts.ValueAxis());
@@ -46,7 +48,7 @@ class App extends React.Component {
         // Set up appearance
         series.stroke = color;
         series.strokeDasharray = '0,0';
-        series.strokeWidth = 1;
+        series.strokeWidth = 4;
         series.connect = true;
         // series.tensionX = 0.5;
         // series.tensionY = 0.5;
@@ -97,50 +99,6 @@ class App extends React.Component {
 
         // ENable Events
         series.segments.template.interactionsEnabled = true;
-
-        const labelBullet = series.bullets.push(new am4charts.LabelBullet());
-        labelBullet.adapter.add('visible', (_, e) => {
-          const value = e.dataItem.dataContext;
-
-          if (value && value.connector) {
-            return true;
-          }
-          return false;
-        });
-
-        labelBullet.label.padding(5, 5, 5, 5);
-        const titleLabel = labelBullet.createChild(am4core.Label);
-        titleLabel.text = data.find((d) => d.connector)
-          ? data.find((d) => d.connector).connector
-          : '';
-        titleLabel.fontSize = 14;
-        titleLabel.isMeasured = false;
-        titleLabel.padding(4, 4, 4, 4);
-        titleLabel.verticalCenter = 'middle';
-        titleLabel.horizontalCenter = 'middle';
-        const rect = new am4core.RoundedRectangle();
-        rect.cornerRadius(5, 5, 5, 5);
-        rect.stroke = color;
-        titleLabel.background = rect;
-        titleLabel.stroke = am4core.color('#000');
-
-        const segment = series.segments.template;
-        segment.interactionsEnabled = true;
-
-        const hoverState = segment.states.create('hover');
-        hoverState.properties.strokeWidth = 10;
-        hoverState.properties.strokeDasharray = '0,0';
-
-        const dimmed = segment.states.create('dimmed');
-        dimmed.properties.stroke = am4core.color('#dadada');
-
-        segment.events.on('over', function (event) {
-          processOver(event.target.parent.parent.parent);
-        });
-
-        segment.events.on('out', function (event) {
-          processOut(event.target.parent.parent.parent);
-        });
       }
 
       // Responsive
@@ -163,8 +121,6 @@ class App extends React.Component {
       loadData();
     }); // end am4core.ready()
   }
-
-  createImageBullet = () => {};
 
   render() {
     return <div id="chartdiv" style={{ width: 1200, height: 800 }}></div>;
