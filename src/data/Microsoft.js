@@ -14,8 +14,8 @@ export const MAP_DATA = [
     data: [
       {
         station: 'MS WCF',
-        x: -40,
-        y: 0,
+        x: 40,
+        y: 40,
       },
     ],
   },
@@ -27,12 +27,12 @@ export const CONNECTORS = [
     color: colorCodes.green,
     data: [
       {
-        x: -40,
-        y: 0,
+        x: 40,
+        y: 10,
       },
       {
-        x: -20,
-        y: 0,
+        x: 20,
+        y: 10,
       },
     ],
   },

@@ -22,8 +22,8 @@ class App extends React.Component {
 
       function createAxis(list) {
         const axis = list.push(new am4charts.ValueAxis());
-        axis.min = -50;
-        axis.max = 100;
+        axis.min = 0;
+        axis.max = 300;
         axis.strictMinMax = true;
         axis.renderer.grid.template.disabled = false;
         axis.renderer.labels.template.disabled = false;
